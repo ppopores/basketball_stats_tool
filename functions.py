@@ -9,20 +9,16 @@ players = copy.deepcopy(PLAYERS)
 team_size = len(players)/len(teams)
 experience = []
 no_experience = []
-#create list of empty lists for each team, accessible by indexes based on user input
 league_roster = [[] for item in teams]
-#create matching set of lists for each set of guardians
 guardians = [[] for item in teams]
-#create indexed dictionary +1 to match the lists for each team name ie: (1: "Panthers")
 teams_in_league = list(enumerate(teams, 1))
 team_names = [item for item in teams]
-#create list of average heights corresponding to same index
 average_heights = [[] for item in teams]
 team_experience = [[[],[]] for item in teams]
 this_year = datetime.now()
 year = this_year.strftime("%Y")
 
-def clean_data(players, experience, no_experience):
+def clean_data(players):
     for player in players:
         player["height"] = int(player["height"][:2])
         player["guardians"] = player["guardians"].split(" and ")
@@ -30,9 +26,7 @@ def clean_data(players, experience, no_experience):
             player["experience"] = False
         elif player.get("experience") == "YES":
             player["experience"] = True
-    #change player experience to boolean value
-    #change height to integer
-    #change guardians by removing extra characters
+
 
 def sort_experience(players, experience, no_experience):
 	for player in players:
@@ -126,7 +120,7 @@ def show_data(*args):
                 print("\nThe average height of the {} is ".format(team_names[user_input]) + str(team_avg_height) + " inches.\n")
         except ValueError:
             print("SO SORRY!!! PLEASE ENTER A VALID INTEGER FOR YOUR TEAM!")
-        break
+            continue
 
 
 if __name__ == "__main__":
@@ -134,15 +128,3 @@ if __name__ == "__main__":
     sort_experience()
     sort_data()
     show_data()
-    #sorts players by experience based on boolean values
-    #assigns players to team using team size as comparison
-    #players should be half experienced, half not
-    #when players are sorted, also sort guardians to be accessible with same index value in seperate list of lists
-    #add and average heights using counter and add to list accessible with same index
-
-#def user_input(): #lives inside try/except block in app.py
-    #while True:
-    #asks user to input number based on indexed dictionary of team names
-    #displays corresponding data based on user input
-    #after sharing the roster and guardians displays average height, team size, num players with and without experience
-    #asks user if they would like to quite or view another team

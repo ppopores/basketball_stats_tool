@@ -7,7 +7,7 @@ print(("-" * 50) + "\n" + (" " * int((50 - len("Welcome to the Basketball Stats 
 league_intro = "Here are the teams for the " + year + " season:"
 print((" " * int((50 - len(league_intro)) / 2)) + league_intro + "\n")
 
-clean_data(players, experience, no_experience)
+clean_data(players)
 sort_data(experience, no_experience, league_roster, guardians, average_heights, team_experience)
 show_data()
 while True:
