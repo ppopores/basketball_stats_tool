@@ -72,13 +72,15 @@ def show_data(*args):
                 print_guardians = print_guardians.replace("'", "")
                 print(print_guardians)
                 avg_height = sum([sub["height"] for sub in league_roster[user_input]]) / len(league_roster[user_input])
-                avg_height = round(avg_height, 2)
+                avg_height = round(avg_height)
+                f_avg_height = int(avg_height // 12)
+                i_avg_height = int(avg_height % 12)
                 experience = [sub["experience"] for sub in league_roster[user_input]]
                 experienced = [item for item in experience if item is True]
                 num_exp = len(experienced)
-                print(f"\nThe {team_names[user_input]} have {team_size} players, of which {num_exp} have played before and {team_size - num_exp} have not.".upper())
+                print(f"\nThe {team_names[user_input]} have {team_size} players, of which {num_exp} have played before and {team_size - num_exp} have not.")
 
-                print(f"\nThe average height of the {team_names[user_input]} is {str(avg_height)} inches.\n".upper())
+                print(f"\nThe average height of the players on the {team_names[user_input]} is {f_avg_height} feet, {i_avg_height} inches.\n")
         except ValueError:
             print("\nSO SORRY!!! PLEASE ENTER A VALID INTEGER FOR YOUR TEAM!\n\n")
             continue
